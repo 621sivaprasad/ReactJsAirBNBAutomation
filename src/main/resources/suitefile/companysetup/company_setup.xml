@@ -1,0 +1,16 @@
+<?xml version="1.0-SNAPSHOT" encoding="UTF-8"?>
+
+<!-- Sample Suite File -->
+
+<suite name="CompanySetup">
+
+
+	<test name="CreateCompany">
+		<classes>
+			<class
+				name="com.ep.qa.ui.suite.setup.companysetup.testscript.SampleCompanySetupTestScript" />
+		</classes>
+	</test>
+
+</suite>
+

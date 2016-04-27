@@ -1,8 +1,12 @@
 package com.ep.qa.ui.suite.setup.companysetup.testscript;
 
+import java.io.File;
+
+import org.codehaus.jettison.json.JSONObject;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import com.ep.qa.automation.util.reporter.ReportLogServiceImpl;
 import com.ep.qa.ui.suite.setup.companysetup.testfunction.AirBNBLoginPage;
 import com.ep.qa.ui.suite.setup.companysetup.testfunction.AirBNBMenuLinkOperations;
 import com.ep.qa.ui.suite.setup.companysetup.testfunction.AirBNBSignUpPage;
@@ -12,6 +16,12 @@ public class TestAirBNBSignUp extends TestSuiteBase{
 	AirBNBMenuLinkOperations airBNBMenuLinkOperations;
 	AirBNBSignUpPage airBNBSignUpPage;
 	AirBNBLoginPage airBNBLoginPage;
+	
+	ReportLogServiceImpl report = new ReportLogServiceImpl(TestAirBNBSignUp.class);
+	
+	JSONObject dataForSignUp;
+	File signUpDetails;
+	String firstName,lastName,email,password,month,day,year;
 	
 	@BeforeMethod
 	public void setUp(){
@@ -23,6 +33,23 @@ public class TestAirBNBSignUp extends TestSuiteBase{
 	airBNBSignUpPage.loadSignUpObjects();
 	airBNBLoginPage.loadLoginObjects();
 	
+    try{
+		
+	    signUpDetails = new File(basePath + commonUtil.getFilePath("signUpDetails.json"));
+	    dataForSignUp = dataProvider.getJSONObject(signUpDetails).getJSONObject("signupInfo");
+		firstName = dataForSignUp.getString("firstName");
+		lastName = dataForSignUp.getString("lastName");
+		email = dataForSignUp.getString("email");
+		password = dataForSignUp.getString("password");
+		month = dataForSignUp.getString("month");
+		day = dataForSignUp.getString("day");
+		year = dataForSignUp.getString("year");
+				
+	}catch (Exception exception) {
+		report.debug("Valid JSON resource arguement required" + exception.getMessage());
+	}
+	
+	
 	}
 	
 
@@ -31,7 +58,8 @@ public class TestAirBNBSignUp extends TestSuiteBase{
 		
 		
 		airBNBMenuLinkOperations.clickSignUpLink();
-		airBNBSignUpPage.signUp("Siva", "Pilaka", "swap.more20@gmail.com", "234e23","March", "2", "1991");
+		System.out.println("SignUpInfo FirstName"+firstName);
+		airBNBSignUpPage.signUp(firstName, lastName, email, password, month, day, year);
 		
 		
 	}

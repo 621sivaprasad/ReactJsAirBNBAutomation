@@ -24,38 +24,42 @@ public class AirBNBMenuLinkOperations extends TestSuiteBase {
 
 	public void clickLoginLink() {
 
-		browser.getClick().performClick(LocatorType.XPATH, menuLinkObjectProperties.getProperty("homePage.loginLink"));
+		browserObj.getClick().performClick(LocatorType.XPATH, menuLinkObjectProperties.getProperty("homePage.loginLink"));
 		report.info("Clicked login link from home page");
 	}
 
 	public void clickSignUpLink() {
-		browser.getClick().performClick(LocatorType.XPATH, menuLinkObjectProperties.getProperty("homePage.signUpLink"));
+		browserObj.getClick().performClick(LocatorType.XPATH, menuLinkObjectProperties.getProperty("homePage.signUpLink"));
 		report.info("Clicked Sign Up link from Home page");
 	}
 
 	public void hoverUserMenuAndclickEditProfileLink() {
-		WebDriver driver = browser.getDriver();
+		WebDriver driver = browserObj.getDriver();
 		Actions action = new Actions(driver);
-		browser.getWait().waitFor(LocatorType.XPATH, menuLinkObjectProperties.getProperty("menuLink.userMenu"));
-		browser.getClick().performClick(LocatorType.XPATH, menuLinkObjectProperties.getProperty("menuLink.userMenu"));
-		browser.getWait().waitFor(LocatorType.XPATH, "//h2[@class='text-center']");
+		browserObj.getWait().waitFor(LocatorType.XPATH, menuLinkObjectProperties.getProperty("menuLink.userMenu"));
+		browserObj.getClick().performClick(LocatorType.XPATH, menuLinkObjectProperties.getProperty("menuLink.userMenu"));
+		System.out.println("Failed step click user menu link ------------------------------*************** ");
+		browserObj.getWait().waitFor(LocatorType.XPATH, "//h2[@class='text-center']");
 
 		while (true) {
 
-			browser.getWait().waitFor(LocatorType.XPATH, menuLinkObjectProperties.getProperty("menuLink.userMenu"));
+			browserObj.getWait().waitFor(LocatorType.XPATH, menuLinkObjectProperties.getProperty("menuLink.userMenu"));
+			System.out.println("****************************** in while loop of edit profile hover");
 			action.moveToElement(
 					driver.findElement(By.xpath(menuLinkObjectProperties.getProperty("menuLink.userMenu")))).perform();
 			if (driver.findElement(By.xpath(menuLinkObjectProperties.getProperty("menuLink.editProfileLink")))
 					.isDisplayed()) {
-				browser.getWait().waitFor(LocatorType.XPATH,
+				browserObj.getWait().waitFor(LocatorType.XPATH,
 						menuLinkObjectProperties.getProperty("menuLink.editProfileLink"));
-				browser.getClick().performClick(LocatorType.XPATH,
+				browserObj.getClick().performClick(LocatorType.XPATH,
 						menuLinkObjectProperties.getProperty("menuLink.editProfileLink"));
+				System.out.println("before break ************************** in if ...");
 				break;
 
 			}
 
 			driver.findElement(By.xpath(menuLinkObjectProperties.getProperty("menuLink.userMenu"))).sendKeys(Keys.F5);
+			System.out.println("F5 KEY PRESS $$$$$$$$$$$$$$$$$$$$$$$$$$");
 
 		}
 		report.info("Clicked edit profile from userMenu");
@@ -64,22 +68,22 @@ public class AirBNBMenuLinkOperations extends TestSuiteBase {
 	public void hoverUserMenuclickWishListLink() {
 		
 		
-		WebDriver driver = browser.getDriver();
+		WebDriver driver = browserObj.getDriver();
 		Actions action = new Actions(driver);
-		browser.getWait().waitFor(LocatorType.XPATH, menuLinkObjectProperties.getProperty("menuLink.userMenu"));
-		browser.getClick().performClick(LocatorType.XPATH, menuLinkObjectProperties.getProperty("menuLink.userMenu"));
-		browser.getWait().waitFor(LocatorType.XPATH, "//h2[@class='text-center']");
+		browserObj.getWait().waitFor(LocatorType.XPATH, menuLinkObjectProperties.getProperty("menuLink.userMenu"));
+		browserObj.getClick().performClick(LocatorType.XPATH, menuLinkObjectProperties.getProperty("menuLink.userMenu"));
+		browserObj.getWait().waitFor(LocatorType.XPATH, "//h2[@class='text-center']");
 
 		while (true) {
 
-			browser.getWait().waitFor(LocatorType.XPATH, menuLinkObjectProperties.getProperty("menuLink.userMenu"));
+			browserObj.getWait().waitFor(LocatorType.XPATH, menuLinkObjectProperties.getProperty("menuLink.userMenu"));
 			action.moveToElement(
 					driver.findElement(By.xpath(menuLinkObjectProperties.getProperty("menuLink.userMenu")))).perform();
 			if (driver.findElement(By.xpath(menuLinkObjectProperties.getProperty("menuLink.wishListLink")))
 					.isDisplayed()) {
-				browser.getWait().waitFor(LocatorType.XPATH,
+				browserObj.getWait().waitFor(LocatorType.XPATH,
 						menuLinkObjectProperties.getProperty("menuLink.wishListLink"));
-				browser.getClick().performClick(LocatorType.XPATH,
+				browserObj.getClick().performClick(LocatorType.XPATH,
 						menuLinkObjectProperties.getProperty("menuLink.wishListLink"));
 				break;
 
@@ -94,22 +98,22 @@ public class AirBNBMenuLinkOperations extends TestSuiteBase {
 	
 	
 	public void hoverUserMenuAndclickLogOutLink() {
-		WebDriver driver = browser.getDriver();
+		WebDriver driver = browserObj.getDriver();
 		Actions action = new Actions(driver);
-		browser.getWait().waitFor(LocatorType.XPATH, menuLinkObjectProperties.getProperty("menuLink.userMenu"));
-		browser.getClick().performClick(LocatorType.XPATH, menuLinkObjectProperties.getProperty("menuLink.userMenu"));
-		browser.getWait().waitFor(LocatorType.XPATH, "//h2[@class='text-center']");
+		browserObj.getWait().waitFor(LocatorType.XPATH, menuLinkObjectProperties.getProperty("menuLink.userMenu"));
+		browserObj.getClick().performClick(LocatorType.XPATH, menuLinkObjectProperties.getProperty("menuLink.userMenu"));
+		browserObj.getWait().waitFor(LocatorType.XPATH, "//h2[@class='text-center']");
 
 		while (true) {
 
-			browser.getWait().waitFor(LocatorType.XPATH, menuLinkObjectProperties.getProperty("menuLink.userMenu"));
+			browserObj.getWait().waitFor(LocatorType.XPATH, menuLinkObjectProperties.getProperty("menuLink.userMenu"));
 			action.moveToElement(
 					driver.findElement(By.xpath(menuLinkObjectProperties.getProperty("menuLink.userMenu")))).perform();
 			if (driver.findElement(By.xpath(menuLinkObjectProperties.getProperty("menuLink.logoutLink")))
 					.isDisplayed()) {
-				browser.getWait().waitFor(LocatorType.XPATH,
+				browserObj.getWait().waitFor(LocatorType.XPATH,
 						menuLinkObjectProperties.getProperty("menuLink.logoutLink"));
-				browser.getClick().performClick(LocatorType.XPATH,
+				browserObj.getClick().performClick(LocatorType.XPATH,
 						menuLinkObjectProperties.getProperty("menuLink.logoutLink"));
 				break;
 

@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>reactJs</groupId>
-	<artifactId>reactJsAutomation</artifactId>
+	<artifactId>reactJsAirBNBAuto</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
@@ -21,7 +21,7 @@
 		<beta.repo.url>file://///epsw/Java/maven2/repositories/qa/Beta</beta.repo.url>
 		<release.repo.url>file://///epsw/Java/maven2/repositories/qa/Releases</release.repo.url>
 		<velocity.version>1.7</velocity.version>
-		<report.engine.version>1.0.BETA</report.engine.version>
+		<report.engine.version>1.1.BETA</report.engine.version>
 		<java.version>1.7</java.version>
 		<testng.version>6.8.8</testng.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -53,6 +53,12 @@
 					<groupId>com.ep.reportengine</groupId>
 					<artifactId>epfame-reportengine</artifactId>
 					<version>${report.engine.version}</version>
+				</dependency>
+
+				<dependency>
+					<groupId>org.apache.velocity</groupId>
+					<artifactId>velocity</artifactId>
+					<version>1.7</version>
 				</dependency>
 			</dependencies>
 		</profile>
@@ -92,7 +98,7 @@
 
 	<build>
 		<plugins>
-		<!-- Exec maven plugin for browser stack support -->
+			<!-- Exec maven plugin for browser stack support -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
@@ -110,6 +116,15 @@
 					<mainClass>com.ep.qa.ui.suite.TestNGRunner</mainClass>
 					<cleanupDaemonThreads>false</cleanupDaemonThreads>
 					<skip>false</skip>
+
+
+
+					<properties>
+						<property>
+							<name>listener</name>
+							<value>com.ep.reportengine.ReportListener,com.ep.reportengine.CustomListener</value>
+						</property>
+					</properties>
 					<systemProperties>
 						<systemProperty>
 							<key>productName</key>
@@ -134,6 +149,7 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>${maven.compiler.plugin}</version>
 				<configuration>
+					<encoding>${project.build.sourceEncoding}</encoding>
 					<source>${java.version}</source>
 					<target>${java.version}</target>
 				</configuration>
@@ -141,17 +157,31 @@
 
 			<!-- Maven MOJO Exec Plugin -->
 			<!-- Comment by Siva.. we are not running the test scripts in remotedriver. 
-				So commented temporarily <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>exec-maven-plugin</artifactId> 
+				So commented temporarily  -->
+			<!-- Added by - Siva. To run the application in local -->
+			
+			<!-- <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>exec-maven-plugin</artifactId> 
 				<version>${exec.maven.plugin}</version> <executions> <execution> <phase>test</phase> 
 				<goals> <goal>java</goal> </goals> </execution> </executions> <configuration> 
-				<mainClass>com.ep.qa.ui.suite.TestNGRunner</mainClass> </configuration> </plugin> -->
-			<!-- Added by - Siva. To run the application in local -->
-			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-surefire-plugin</artifactId> 
-				<version>${maven.surefire.plugin.version}</version> <configuration> <skip>false</skip> 
-				<suiteXmlFiles> <suiteXmlFile>testng.xml</suiteXmlFile> </suiteXmlFiles> 
-				<testFailureIgnore>true</testFailureIgnore> <properties> <property> <name>listener</name> 
-				<value>com.ep.reportengine.ReportListener,com.ep.reportengine.CustomListener</value> 
-				</property> </properties> </configuration> </plugin> -->
+				<mainClass>com.ep.qa.ui.suite.TestNGRunner</mainClass> </configuration> </plugin>-->
+		<!-- 	<plugin> 
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven.surefire.plugin.version}</version>
+				<configuration>
+					<skip>false</skip>
+					<suiteXmlFiles>
+						<suiteXmlFile>testng.xml</suiteXmlFile>
+					</suiteXmlFiles>
+					<testFailureIgnore>true</testFailureIgnore>
+					<properties>
+						<property>
+							<name>listener</name>
+							<value>com.ep.reportengine.ReportListener,com.ep.reportengine.CustomListener</value>
+						</property>
+					</properties>
+				</configuration>
+			</plugin> -->
 
 		</plugins>
 	</build>
@@ -167,11 +197,11 @@
 
 	</repositories>
 
-	<dependencies>
-		<!-- <dependency> <groupId>org.apache.velocity</groupId> <artifactId>velocity</artifactId> 
-			<version>${velocity.version}</version> </dependency> -->
+<!-- 	<dependencies>
+		<dependency> <groupId>org.apache.velocity</groupId> <artifactId>velocity</artifactId> 
+			<version>${velocity.version}</version> </dependency>
 
-		<!-- <dependency> <groupId>org.testng</groupId> <artifactId>testng</artifactId> 
-			<version>${testng.version}</version> </dependency> -->
-	</dependencies>
+		<dependency> <groupId>org.testng</groupId> <artifactId>testng</artifactId> 
+			<version>${testng.version}</version> </dependency>
+	</dependencies> -->
 </project>

@@ -1,0 +1,8 @@
+{
+    "editProfileInfo":
+        {
+            "describeYourself": "TextArea",
+            "uploadPhotoPath": "C:\\Users\\sp092268\\workspace\\reactJsAirBNBAuto\\src\\main\\resources\\Koala.jpg",
+            "confirmPasssword" : "airbnb@123"
+        }
+}

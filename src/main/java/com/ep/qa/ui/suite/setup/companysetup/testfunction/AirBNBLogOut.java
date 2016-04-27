@@ -25,7 +25,7 @@ public class AirBNBLogOut extends TestSuiteBase{
 	public void logout()
 	{
 		
-		Boolean verifyLogout=browser.getDriver().findElement(By.xpath(logoutObjectProperties.getProperty("homePage.loginLink"))).isDisplayed();
+		Boolean verifyLogout=browserObj.getDriver().findElement(By.xpath(logoutObjectProperties.getProperty("homePage.loginLink"))).isDisplayed();
 	
 	}
 	

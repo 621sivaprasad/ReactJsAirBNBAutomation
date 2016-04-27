@@ -20,35 +20,40 @@ public class AirBNBHomePage extends TestSuiteBase{
 		homePageObjectProperties = commonUtil.getPageObjects("homePage.properties");
 	}
 	
+	public void verifyHomePage(String headerText, String tagLineText){
+		browserObj.getWait().waitFor(LocatorType.XPATH, homePageObjectProperties.getProperty("homePage.welcomeHomeLabel"));
+		VerificationManager.verifyString(browserObj.getDriver().findElement(By.xpath(homePageObjectProperties.getProperty("homePage.welcomeHomeLabel"))).getText(),headerText , "Verifying the Header message "+headerText+" .");
+		
+		VerificationManager.verifyString(browserObj.getDriver().findElement(By.xpath(homePageObjectProperties.getProperty("homePage.homeLabelTagLine"))).getText(), tagLineText, "Verifying the tagline text "+tagLineText+" .");
+		
+		Boolean verifyLoginLink = browserObj.getDriver().findElement(By.xpath(homePageObjectProperties.getProperty("homePage.loginLink"))).isDisplayed();
+		VerificationManager.verifyBoolean(verifyLoginLink, true, "Verified login link "+verifyLoginLink);
+		
+		Boolean verifySignUpLink = browserObj.getDriver().findElement(By.xpath(homePageObjectProperties.getProperty("homePage.signUpLink"))).isDisplayed();
+		VerificationManager.verifyBoolean(verifySignUpLink, true, "Verified sign up link "+verifySignUpLink);
+	}
+	
 	public void searchHotelsInAPlace(String place, String guestNumber){
 		
-		browser.getWait().waitFor(LocatorType.XPATH, homePageObjectProperties.getProperty("homePage.airBNBLogoLink"));
-		browser.getClick().performClick(LocatorType.XPATH, homePageObjectProperties.getProperty("homePage.airBNBLogoLink"));
+		browserObj.getWait().waitFor(LocatorType.XPATH, homePageObjectProperties.getProperty("homePage.airBNBLogoLink"));
+		browserObj.getClick().performClick(LocatorType.XPATH, homePageObjectProperties.getProperty("homePage.airBNBLogoLink"));
 		report.info("Clicked airbnb logo link");
 		
-		browser.getWait().waitFor(LocatorType.XPATH, homePageObjectProperties.getProperty("homePage.locationTextField"));
-		Actions actions = new Actions(browser.getDriver());
+		browserObj.getWait().waitFor(LocatorType.XPATH, homePageObjectProperties.getProperty("homePage.locationTextField"));
+		Actions actions = new Actions(browserObj.getDriver());
 
-		actions.moveToElement(browser.getDriver().findElement(By.xpath(homePageObjectProperties.getProperty("homePage.locationTextField")))).click().perform();
-		browser.getTextField().enterTextField(LocatorType.XPATH, homePageObjectProperties.getProperty("homePage.locationTextField"), place);
+		actions.moveToElement(browserObj.getDriver().findElement(By.xpath(homePageObjectProperties.getProperty("homePage.locationTextField")))).click().perform();
+		browserObj.getTextField().enterTextField(LocatorType.XPATH, homePageObjectProperties.getProperty("homePage.locationTextField"), place);
 		report.info("Entered location in the location text field");
 		
-		browser.getDriver().findElement(By.xpath(homePageObjectProperties.getProperty("homePage.guestsDropdown"))).sendKeys(guestNumber);
+		browserObj.getDriver().findElement(By.xpath(homePageObjectProperties.getProperty("homePage.guestsDropdown"))).sendKeys(guestNumber);
 		report.info("Selected number of guests from the drop down");
 		
-		browser.getClick().performClick(LocatorType.XPATH, homePageObjectProperties.getProperty("homePage.searchButton"));
+		browserObj.getClick().performClick(LocatorType.XPATH, homePageObjectProperties.getProperty("homePage.searchButton"));
 		report.info("Clicked search button");
 	}
 	
-	public void verifyHomePage(String headerText, String tagLineText)
-	{
-		VerificationManager.verifyString(browser.getDriver().findElement(By.xpath(homePageObjectProperties.getProperty("homePage.welcomeHomeLabel"))).getText(),headerText , "Verifying the Header message "+headerText+" .");
-		VerificationManager.verifyString(browser.getDriver().findElement(By.xpath(homePageObjectProperties.getProperty("homePage.homeLabelTagLine"))).getText(), tagLineText, "Verifying the tagline text "+tagLineText+" .");
-		Boolean verifyLoginLink = browser.getDriver().findElement(By.xpath(homePageObjectProperties.getProperty("homePage.loginLink"))).isDisplayed();
-		VerificationManager.verifyBoolean(verifyLoginLink, true, "Verified login link "+verifyLoginLink);
-		Boolean verifySignUpLink = browser.getDriver().findElement(By.xpath(homePageObjectProperties.getProperty("homePage.signUpLink"))).isDisplayed();
-		VerificationManager.verifyBoolean(verifySignUpLink, true, "Verified sign up link "+verifySignUpLink);
-	}
+
 	
 	
 }

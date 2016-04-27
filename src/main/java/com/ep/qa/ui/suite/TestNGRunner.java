@@ -30,7 +30,11 @@ public class TestNGRunner {
 	 * @throws Exception
 	 */
 	public static void main(String[] args) throws Exception {
-		suitesToRun = testNGEngine.getSuitesToRunFor("testng.xml", "clients", "OS_version_Browser_version");
+		//String suiteName = System.getProperty("suiteName") != null ? System.getProperty("suiteName").toUpperCase() : "REGRESSION";
+//		suitesToRun = testNGEngine.getSuitesToRunFor("src"+filePath"+sivsivAddEmployee.xml", "clients", "OS_version_Browser_version");
+		suitesToRun = testNGEngine.getSuitesToRunFor(System.getProperty("user.dir")+filePath+"testng.xml",
+                "clients", "OS_version_Browser_version");
+
 		for (XmlSuite xmlSuite : suitesToRun) {
 			System.out.println("Suite name ---" + xmlSuite.getName());
 		}

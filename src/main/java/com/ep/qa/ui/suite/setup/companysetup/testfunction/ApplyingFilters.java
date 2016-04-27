@@ -13,6 +13,7 @@ import com.ep.automation.ui.seleniuminterfaces.ICheckBox.SelectType;
 import com.ep.qa.automation.util.enums.LocatorType;
 import com.ep.qa.automation.util.reporter.ReportLogServiceImpl;
 import com.ep.qa.ui.suite.setup.companysetup.testsuite.TestSuiteBase;
+import com.ep.qa.ui.utils.AirBNBConstants;
 
 public class ApplyingFilters  extends TestSuiteBase
 {
@@ -27,27 +28,30 @@ public class ApplyingFilters  extends TestSuiteBase
 	
 	public void applyHotelFilters(){
 		
-		browser.getClick().performClick(LocatorType.XPATH, hotelFiltersPageObjectProperties.getProperty("filterPage.roomType"));
+		browserObj.getWait().waitFor(LocatorType.XPATH, hotelFiltersPageObjectProperties.getProperty("filterPage.roomType"));
+		browserObj.getClick().performClick(LocatorType.XPATH, hotelFiltersPageObjectProperties.getProperty("filterPage.roomType"));
 		report.info("Clicked check box room type");
 		
-		//browser.getWait().waitFor(LocatorType.XPATH, hotelFiltersPageObjectProperties.getProperty("filterPage.moreFiltersButton"));
-		browser.getClick().performClick(LocatorType.XPATH, hotelFiltersPageObjectProperties.getProperty("filterPage.moreFiltersButton"));
+		browserObj.getWait().waitFor(LocatorType.XPATH, hotelFiltersPageObjectProperties.getProperty("filterPage.searchResults"));
+		browserObj.getClick().performClick(LocatorType.XPATH, hotelFiltersPageObjectProperties.getProperty("filterPage.moreFiltersButton"));
 		report.info("Clicked button more filters button");
 		
-		WebDriverWait wait = new WebDriverWait(browser.getDriver(), 20);
-		wait.until(ExpectedConditions.stalenessOf(browser.getDriver().findElement(By.xpath(hotelFiltersPageObjectProperties.getProperty("filterPage.internetCheckBox")))));
-		wait.until(ExpectedConditions.visibilityOf(browser.getDriver().findElement(By.xpath(hotelFiltersPageObjectProperties.getProperty("filterPage.internetCheckBox")))));
 		
-		browser.getClick().performClick(LocatorType.XPATH, hotelFiltersPageObjectProperties.getProperty("filterPage.internetCheckBox"));
+		WebDriverWait wait = new WebDriverWait(browserObj.getDriver(),AirBNBConstants.waitInSeconds);
+		//wait.until(ExpectedConditions.stalenessOf(browserObj.getDriver().findElement(By.xpath(hotelFiltersPageObjectProperties.getProperty("filterPage.internetCheckBox")))));
+		wait.until(ExpectedConditions.visibilityOf(browserObj.getDriver().findElement(By.xpath(hotelFiltersPageObjectProperties.getProperty("filterPage.internetCheckBox")))));
+		
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(hotelFiltersPageObjectProperties.getProperty("filterPage.internetCheckBox"))));
+		browserObj.getClick().performClick(LocatorType.XPATH, hotelFiltersPageObjectProperties.getProperty("filterPage.internetCheckBox"));
 		report.info("Clicked checkbox wireless/internet");
 		
-		browser.getClick().performClick(LocatorType.XPATH, hotelFiltersPageObjectProperties.getProperty("filterPage.poolCheckBox"));
+		browserObj.getClick().performClick(LocatorType.XPATH, hotelFiltersPageObjectProperties.getProperty("filterPage.poolCheckBox"));
 		report.info("Clicked checkbox pool");
 		
-		browser.getClick().performClick(LocatorType.XPATH, hotelFiltersPageObjectProperties.getProperty("filterPage.kitchenCheckBox"));
+		browserObj.getClick().performClick(LocatorType.XPATH, hotelFiltersPageObjectProperties.getProperty("filterPage.kitchenCheckBox"));
 		report.info("Clicked checkbox Kitchen");
 		
-		browser.getClick().performClick(LocatorType.XPATH, hotelFiltersPageObjectProperties.getProperty("filterPage.applyFilterButton"));
+		browserObj.getClick().performClick(LocatorType.XPATH, hotelFiltersPageObjectProperties.getProperty("filterPage.applyFilterButton"));
 		report.info("Clicked apply filter button");
 		
 		}

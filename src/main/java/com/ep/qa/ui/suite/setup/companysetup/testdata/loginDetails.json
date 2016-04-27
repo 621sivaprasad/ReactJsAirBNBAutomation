@@ -2,6 +2,7 @@
     "loginCreds":
         {
             "userName": "siva.pilaka@atmecs.com",
-            "password": "airbnb@123"
+            "password": "airbnb@123",
+            "loggedInUser": "Siva"
         }
 }

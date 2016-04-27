@@ -4,8 +4,9 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.ep.qa.ui.suite.setup.companysetup.testfunction.AirBNBMenuLinkOperations;
+import com.ep.qa.ui.suite.setup.companysetup.testsuite.TestSuiteBase;
 
-public class TestAirBNBLogOut {
+public class TestAirBNBLogOut extends TestSuiteBase {
 	
 	AirBNBMenuLinkOperations airBNBMenuLinkOperations;
 

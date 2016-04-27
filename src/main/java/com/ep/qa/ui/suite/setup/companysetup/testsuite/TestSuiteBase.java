@@ -5,6 +5,7 @@ import java.util.Properties;
 
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 
 import com.ep.automation.ui.selenium.Browser;
 import com.ep.qa.automation.dataprovider.TestDataProvider;
@@ -17,11 +18,11 @@ import com.ep.qa.ui.suite.setup.companysetup.testfunction.AirBNBCommonUtil;
 
 public class TestSuiteBase {
 	private static ReportLogService report = new ReportLogServiceImpl(TestSuiteBase.class);
-	public static Browser browser;
+	public static Browser browserObj;
 	public static Properties CONFIG, PAGEELEMENTS;
-	public  TestDataProvider dataProvider;
+	public static TestDataProvider dataProvider;
 	public static String basePath = System.getProperty("user.dir");
-	public  AirBNBCommonUtil commonUtil = new AirBNBCommonUtil();
+	public static AirBNBCommonUtil commonUtil = new AirBNBCommonUtil();
 
 	/**
 	 * Purpose: This method is to load all configurations & page elements of application.
@@ -30,8 +31,10 @@ public class TestSuiteBase {
 	 * 3. Create an instance for Browser class
 	 * 4. Open URL
 	 */
+	@Parameters({"os","osVersion","browser","browserVersion"})
 	@BeforeTest
-	public void setup(){
+	public void setup(String os, String osVersion, String browser, String browserVersion){
+	//public void setup(){
 		dataProvider = TestDataProvider.getInstance(); 
 		try{
 			CONFIG = dataProvider.loadProperties(basePath + File.separator + 
@@ -42,10 +45,10 @@ public class TestSuiteBase {
 			throw new IllegalStateException();
 		}
 		LogManager.setLogLevel(LogLevel.INFO);
-		browser = new Browser();
-		browser.openPage(CONFIG.getProperty("url"), BrowserType.CHROME);
-		
-		browser.maximizeWindow();
+		browserObj = new Browser();
+		browserObj.openURL("https://www.airbnb.com/", os, osVersion, browser, browserVersion);
+		//browserObj.openPage(CONFIG.getProperty("url"), BrowserType.CHROME);
+		browserObj.maximizeWindow();
 	}
 	
 	/**
@@ -53,8 +56,8 @@ public class TestSuiteBase {
 	 */
 	@AfterTest
 	public static void tearDown(){
-		browser.clearAllCookies();
+		browserObj.clearAllCookies();
 		
-		browser.closeBrowser();
+		browserObj.closeBrowser();
 	}
 }

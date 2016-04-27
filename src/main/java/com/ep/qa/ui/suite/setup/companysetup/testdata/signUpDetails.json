@@ -1,0 +1,13 @@
+{
+    "signupInfo":
+        {
+            "firstName": "swapnil",
+            "lastName": "more",
+            "email" : "swap.more20@gmail.com",
+            "password":"abc@123",
+            "month":"March",
+            "day":"21",
+            "year":"1991"
+            
+        }
+}

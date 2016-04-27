@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="Smoke-AirBNB" parallel="false">
+	<test name="smokeTest">
+		<classes>
+			<class
+				name="com.ep.qa.ui.suite.setup.companysetup.testscript.TestAirBNBVerifyHomePage" />
+				<class
+				name="com.ep.qa.ui.suite.setup.companysetup.testscript.TestAirBNBSignUp" />
+				<class
+				name="com.ep.qa.ui.suite.setup.companysetup.testscript.TestAirBNBLogin" />
+				<class
+				name="com.ep.qa.ui.suite.setup.companysetup.testscript.TestAirBNBEditProfileAndUploadPhoto" />
+				<class
+				name="com.ep.qa.ui.suite.setup.companysetup.testscript.TestAirBNBSearchHotelsAndApplyFilters" />
+				<class
+				name="com.ep.qa.ui.suite.setup.companysetup.testscript.TestAirBNBWishList" />
+				<class
+				name="com.ep.qa.ui.suite.setup.companysetup.testscript.TestAirBNBLogOut" />
+		</classes>
+	</test>
+</suite>
